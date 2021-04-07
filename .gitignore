@@ -1,0 +1,5 @@
+cmake-build-debug/
+*.exe
+*.out
+cropped_images/
+img/
