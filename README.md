@@ -21,7 +21,9 @@ Instructions
 
 5. Use the png2bin.py to convert your images into the `.bin` format understood by the code. [*2]
 
-6. Use the run command, syntax for Windows and Linux / MacOS given respectively below. Syntax: `./run path/to/file.bin filename.mp4` or `bash run.sh path/to/file.bin filename.mp4` [*3]
+6. Paste in your `seamcarving.c` file into the same directory. Obviously not given here to avoid academic dishonesty issues.
+
+7. Use the run command, syntax for Windows and Linux / MacOS given respectively below. Syntax: `./run path/to/file.bin filename.mp4` or `bash run.sh path/to/file.bin filename.mp4` [*3]
 
 UPDATE:
 1. It also now supports direct passing of the filepath and output name.
