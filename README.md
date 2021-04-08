@@ -23,7 +23,10 @@ Instructions
 
 6. Paste in your `seamcarving.c` file into the same directory. Obviously not given here to avoid academic dishonesty issues.
 
-7. Use the run command, syntax for Windows and Linux / MacOS given respectively below. Syntax: `./run path/to/file.bin filename.mp4` or `bash run.sh path/to/file.bin filename.mp4` [*3]
+7. Use the run command - syntax for Windows and Linux / MacOS given respectively below.
+
+Syntax: `./run [path/to/file.bin] [filename.mp4]` or `bash run.sh [path/to/file.bin] [filename.mp4]` [*3]
+Note: Both parameters are optional, the program will ask you for them if you don't provide them.
 
 UPDATE:
 1. It also now supports direct passing of the filepath and output name.
