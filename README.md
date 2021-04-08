@@ -12,7 +12,7 @@ Instructions
 ====
 1. Install ffmpeg. (https://ffmpeg.org/download.html)
 
-2. Make sure python is in your path (Windows) or python3 (Linux/MacOS). If it's named something else you'd have to rename the call in the relevant `run` shell script.
+2. Make sure python is in your path (Windows) or python3 (Linux/MacOS). If it's named something else you'd have to rename the call in the relevant `run` shell script. Also ensure that you have `gcc` in your path, too.
 
 3. (if pip is in your path; typically Windows) `pip install Pillow ffmpeg-python`
 (if pip3 is in your path; typically *nix) `pip3 install Pillow ffmpeg-python`
