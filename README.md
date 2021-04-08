@@ -26,6 +26,7 @@ Instructions
 7. Use the run command - syntax for Windows and Linux / MacOS given respectively below.
 
 Syntax: `./run [path/to/file.bin] [filename.mp4]` or `bash run.sh [path/to/file.bin] [filename.mp4]` [*3]
+
 Note: Both parameters are optional, the program will ask you for them if you don't provide them.
 
 UPDATE:
