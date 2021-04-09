@@ -41,7 +41,7 @@ def read_image(filename):
 #Write a png image to bin
 img = input("Please give the path to the image (include file extension): ")
 image = Image.open(img)
-write_image(image, img)
+write_image(image, f"{img.split('.')[0]}.bin")
 # image = Image.open("img/3x4.png")
 # write_image(image, "img/3x4.bin")
 #
