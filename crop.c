@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <sys/stat.h>
 #include <string.h>
-#include <omp.h> // multithreading. :eyes:
+#include <omp.h>
 #include "c_img.h"
 #include "seamcarving.h"
 
@@ -15,16 +15,10 @@ unsigned char* createBitmapFileHeader(int height, int stride);
 unsigned char* createBitmapInfoHeader(int height, int width);
 void write_bmp_img(struct rgb_img *im, char *filename, unsigned char* image);
 
-//#define IMG(i,j,k) (image[(im->width*BYTES_PER_PIXEL)*i + BYTES_PER_PIXEL*j + k])
 #define IMG(i,j,k) (image[(im->width*BYTES_PER_PIXEL+paddingSize)*i + BYTES_PER_PIXEL*j + k])
 
 void write_bmp_img(struct rgb_img *im, char *filename, unsigned char* image)
-{ // now, image is only allocated once and as we're going down in size it'll never need to be resized.
-//    unsigned char image[im->height][im->width][BYTES_PER_PIXEL]; need dynamic alloc for size limits.
-//    unsigned char *image = (unsigned char*)malloc(im->height*im->width*BYTES_PER_PIXEL);
-
-	// if this works, i'll eat my hat.
-
+{ // image is only allocated once and as we're going down in size it'll never need to be resized.
     unsigned char padding[3] = {0, 0, 0};
     int paddingSize = (4 - (im->width * BYTES_PER_PIXEL) % 4) % 4;
 
@@ -41,27 +35,10 @@ void write_bmp_img(struct rgb_img *im, char *filename, unsigned char* image)
 	    for (int pad = 0; pad < paddingSize; pad++)
 		{
 			image[i*(im->width*BYTES_PER_PIXEL + paddingSize) + 3*im->width + pad] = 0x00;
-			// bmpArray[a*(width*3 + padding) + 3*width + pad] = 0x00;
 		}
     }
-    // for (int i = 0; i < im->height; i++)
-    // {
-        // for (int j = 0; j < im->width; j++)
-        // {   // bmp is read from bottom-to-top UNLIKE every other image format.
-            // IMG(i,j,2) = (unsigned char) get_pixel(im, (im->height)-1-i, /*(im->width)-1-*/j, 0); // R
-            // IMG(i,j,1) = (unsigned char) get_pixel(im, (im->height)-1-i, /*(im->width)-1-*/j, 1); // G
-            // IMG(i,j,0) = (unsigned char) get_pixel(im, (im->height)-1-i, /*(im->width)-1-*/j, 2); // B
-        // }
-	    // //adding padding. https://stackoverflow.com/a/36262260
-	    // for (int pad = 0; pad < paddingSize; pad++)
-		// {
-			// image[i*(im->width*BYTES_PER_PIXEL + paddingSize) + 3*im->width + pad] = 0x00;
-			// // bmpArray[a*(width*3 + padding) + 3*width + pad] = 0x00;
-		// }
-    // }
 //	#pragma omp parallel private(image, im, filename)
 	generateBitmapImage(image, im->height, im->width, filename);
-//    free(image);
 }
 
 int main(int argc, char* argv[])
@@ -97,10 +74,8 @@ int main(int argc, char* argv[])
 
 #if defined(_WIN32)
     mkdir("cropped_images");
-//   mkdir("cropped_images/bmp");
 #else
     mkdir("cropped_images", 0777);
-//    mkdir("cropped_images/bmp", 0777);
 #endif
 
     read_in_img(&im, binName);
@@ -134,8 +109,7 @@ int main(int argc, char* argv[])
 
     return 0;
 }
-// thanks to https://stackoverflow.com/a/47785639
-
+// slightly modified from https://stackoverflow.com/a/47785639
 void generateBitmapImage (unsigned char* image, int height, int width, char* imageFileName)
 {
     int widthInBytes = width * BYTES_PER_PIXEL;
@@ -153,16 +127,6 @@ void generateBitmapImage (unsigned char* image, int height, int width, char* ima
     unsigned char* infoHeader = createBitmapInfoHeader(height, width);
     fwrite(infoHeader, 1, INFO_HEADER_SIZE, imageFile);
 
-	// This stuff below literally just adds padding, y'know.
-	// We can add the padding when writing the unsigned char* image and just save here, duh.
-	// Doing so, would be a bit non-trivial. Just let's see for now.
-	// #pragma omp parallel for
-    // for (int i = 0; i < height; i++) {
-        // fwrite(image + (i*widthInBytes), BYTES_PER_PIXEL, width, imageFile);
-        // fwrite(padding, 1, paddingSize, imageFile);
-    // }
-	
-	// if THIS works I *will* eat my hat.
 	fwrite(image, 1, height*width*BYTES_PER_PIXEL+paddingSize*height, imageFile);
     fclose(imageFile);
 }
