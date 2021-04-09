@@ -12,7 +12,7 @@ Instructions
 ====
 1. Install ffmpeg. (https://ffmpeg.org/download.html)
 
-2. Make sure python is in your path (Windows) or python3 (Linux/MacOS). If it's named something else you'd have to rename the call in the relevant `run` shell script.
+2. Make sure python is in your path (Windows) or python3 (Linux/MacOS). If it's named something else you'd have to rename the call in the relevant `run` shell script. Also ensure that you have `gcc` in your path, too.
 
 3. (if pip is in your path; typically Windows) `pip install Pillow ffmpeg-python`
 (if pip3 is in your path; typically *nix) `pip3 install Pillow ffmpeg-python`
@@ -23,7 +23,11 @@ Instructions
 
 6. Paste in your `seamcarving.c` file into the same directory. Obviously not given here to avoid academic dishonesty issues.
 
-7. Use the run command, syntax for Windows and Linux / MacOS given respectively below. Syntax: `./run path/to/file.bin filename.mp4` or `bash run.sh path/to/file.bin filename.mp4` [*3]
+7. Use the run command - syntax for Windows and Linux / MacOS given respectively below.
+
+Syntax: `./run [path/to/file.bin] [filename.mp4]` or `bash run.sh [path/to/file.bin] [filename.mp4]` [*3]
+
+Note: Both parameters are optional, the program will ask you for them if you don't provide them.
 
 UPDATE:
 1. It also now supports direct passing of the filepath and output name.
