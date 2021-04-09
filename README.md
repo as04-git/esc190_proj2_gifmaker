@@ -20,6 +20,7 @@ Instructions
 4. (optional) Put your images inside the same directory or inside a subdirectory like `img/`. Makes it much easier than having to give absolute or complicated relative paths prone to breakage.
 
 5. Use the png2bin.py to convert your images into the `.bin` format understood by the code. [*2]
+Syntax: `python png2bin.py` (Windows) or `python3 png2bin.py` (Linux/MacOS). It'll ask for the path to the image.
 
 6. Paste in your `seamcarving.c` file into the same directory. Obviously not given here to avoid academic dishonesty issues.
 
