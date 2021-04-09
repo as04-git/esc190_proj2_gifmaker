@@ -4,3 +4,4 @@ cmake-build-debug/
 seamcarving.c
 cropped_images/
 img/
+out/
