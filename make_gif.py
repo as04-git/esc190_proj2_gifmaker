@@ -1,4 +1,5 @@
-import os, glob, re, shutil, ffmpeg, sys
+import os, glob, re, ffmpeg, sys
+#import shutil
 from PIL import Image
 
 img_dir = os.path.join(os.getcwd(), "cropped_images", "img%d.bmp")
