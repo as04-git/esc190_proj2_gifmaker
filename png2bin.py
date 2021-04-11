@@ -2,19 +2,21 @@ from PIL import Image
 from PIL import ImageFile
 ImageFile.LOAD_TRUNCATED_IMAGES = True
 
-def read_image(filename):
-    f = open(filename, "rb")
-    height = read_2bytes(f)
-    width = read_2bytes(f)
-    image = Image.new("RGB", (width, height))
-    bytes = f.read()
+def write_image(image, filename):
+    height = image.height
+    width = image.width
+
+    f = open(filename, "wb")
+
+    f.write(height.to_bytes(2, byteorder='big'))
+    f.write(width.to_bytes(2, byteorder='big'))
+    img_raster = []
     for i in range(height):
         for j in range(width):
-            image.putpixel((j, i), (bytes[3*(i*width + j)+0],
-                                    bytes[3*(i*width + j)+1],
-                                    bytes[3*(i*width + j)+2]))
+            img_raster.extend(image.getpixel((j, i))[:3])
 
-    return image
+    f.write(bytearray(img_raster))
+    f.close()
 
 img = input("Please give the path to the image (include file extension): ")
 image = Image.open(img)
