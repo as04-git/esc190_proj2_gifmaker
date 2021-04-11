@@ -46,3 +46,7 @@ Notes
 [*4] FFMPEG is obviously both multithreaded and uses fancy instruction sets like SIMD, AVX, MMX, and whatever else you can name.
 
 [**] The code should be able to be modified relatively simply to work with RGB32 and even RGBA stuff too.
+
+For the Future
+====
+A more efficient, simple, and performant way of doing this is to create a C executable which can be called from python and using the `imageio` module to simply pass in each seamcarved image as stdout to the python script. `imageio` can, as told [here](https://stackoverflow.com/a/55419207), easily pass in the images to ffmpeg without needing to save them to the disk at all. That way much larger images could be processed without consuming tons of disk space and avoiding file I/O.

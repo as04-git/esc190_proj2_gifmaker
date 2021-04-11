@@ -34,7 +34,6 @@ void write_bmp_img(struct rgb_img *im, char *filename, unsigned char* image)
 		// adding padding. https://stackoverflow.com/a/36262260
 	    for (int pad = 0; pad < paddingSize; pad++)
 		{
-//			image[i*(im->width*BYTES_PER_PIXEL + paddingSize) + 3*im->width + pad] = 0x00;
 			IMG(i, im->width, pad) = 0x00;
 		}
     }
